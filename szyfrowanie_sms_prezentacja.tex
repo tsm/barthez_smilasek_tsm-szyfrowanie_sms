@@ -1,0 +1,250 @@
+\documentclass[xcolor=table]{beamer}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+
+\usetheme[language=polish]%
+  {Goddard}
+
+\newcommand{\filepath}{\texttt}
+\newcommand{\command}{\texttt}
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\latexcode}{\texttt}
+\newcommand{\parameter}[1]{\textlangle #1\textrangle}
+
+
+\lstset{basicstyle=\ttfamily,keywordstyle=\color{goddardblue}\bfseries,commentstyle=\color{goddardblue!75}\itshape,columns=flexible}
+
+\rowcolors{1}{goddardblue!50}{goddardblue!30}
+
+
+\title{Szyfrowanie SMS’ów}
+\subtitle{technologia oraz przegląd algorytmów}
+\author{Bartłomiej Bułat\\
+Tomasz Czarnik\\
+Krzysztof Śmiłek\\}
+
+
+\begin{document}
+
+%==============================
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+%==============================
+\begin{frame}
+  \frametitle{Plan}
+  \tableofcontents
+\end{frame}
+
+
+%=============================================================
+\section{Wstęp}
+
+\begin{frame}
+  \frametitle{Wstęp}
+ Krótkie wiadomości tekstowe potocznie zwane SMS (Short Message Service) na dobre zadomowiły się w większej części świata i stanowią dzisiaj jeden z popularniejszych kanałów komunikacji. 
+% można tu umieścić komiks z XKCD lub dane z niego w porównaniu do całego Internetu 
+\end{frame}
+
+\subsection{Zastosowania}
+%==============================
+\begin{frame}
+  \frametitle{Zastosowania}
+
+Stosowane są m. in. do:
+\begin{itemize}
+\item Wysyłania krótkich wiadomości i "czatów"
+\item Aktywowania usług u operatorów komórkowych
+\item Powiadomień od operatorów, banków i innych instytucji
+\item Wysyłania bezpiecznych tokenów - haseł
+\item Reklam i konkursów SMS
+\item Sterowania urządzeniami 
+%kamerki szpiegowskie hehe
+\end{itemize}
+   
+\end{frame}
+
+%=============================================================
+\section{Technologia}
+
+%=============================================================
+\subsection{Krótka historia GSM}
+\begin{frame}
+  \frametitle{Krótka historia GSM}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%=============================================================
+\begin{frame}
+  \frametitle{Powstanie SMS}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%==============================
+\subsection{Ograniczenia}
+\begin{frame}
+  \frametitle{Kodowanie liter i liczba liter}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+\begin{frame}
+  \frametitle{Problem polskich znaków}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%==============================
+\begin{frame}
+  \frametitle{Wielostronnicowe SMS}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%=============================================================
+\subsection{Zagrożenia}
+\begin{frame}
+  \frametitle{Zagrożenia}
+
+\begin{itemize}
+\item Sposoby podsłuchu 
+%np. zdjęcie urządzenia podsłuchowego
+\item Podszywanie się pod numery
+\end{itemize}
+
+\end{frame}
+
+%=============================================================
+\section{SMS od podszewki}
+%=============================================================
+
+\subsection{Modemy}
+\begin{frame}
+  \frametitle{Telefony i modemy 3G}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+
+\begin{frame}
+  \frametitle{Bluetooth DUN}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+\subsection{Komendy AT}
+\begin{frame}
+  \frametitle{Komendy AT}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+
+\begin{frame}
+  \frametitle{Zestawy komend}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+\begin{frame}
+  \frametitle{Komendy służące do obsługi SMS}
+
+lorem ipsum i takie tam
+
+\end{frame}
+%=============================================================
+\begin{frame}
+  \frametitle{Kodowanie znaków}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%=============================================================
+\section{Szyfrowanie}
+%=============================================================
+
+\subsection{Kryteria wyboru}
+\begin{frame}
+  \frametitle{Kryteria wyboru}
+
+ wymagania, szyfrowanie symetryczne/asymetryczne i dlaczego (przede wszystkim kompresja i ograniczona liczba znaków )
+
+\end{frame}
+
+%=============================================================
+
+\subsection{Przegląd algorytmów}
+
+
+\begin{frame}
+  \frametitle{Szyfr T9}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Przykład}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%=============================================================
+\begin{frame}
+  \frametitle{Szyfr cezara}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Przykład}
+
+lorem ipsum i takie tam
+
+\end{frame}
+
+%=============================================================
+\section{Porównianie}
+%=============================================================
+
+\begin{frame}
+  \frametitle{Porównanie}
+    \begin{itemize}
+\item Metoda z użyciem T9, nie wymaga oprogramowania, łatwa w złamaniu
+\item Szyf cezara, wyjątkowo prosty i nie narzuca dodatkowych danych
+\end{itemize}
+
+\end{frame}
+
+%=============================================================
+\section{Podsumowanie}
+
+\begin{frame}
+  \frametitle{Podsumowanie}
+Spośród omawianych przez nas metod każda ma zalety, ale też pewne słabościi.\\[\baselineskip] Przedstawione technologie i sposoby pozwalają łatwo wprowadzić szyfry i zaimplementować je np. w programie komputerowym korzystającym z modemu 3G lub działającym bezpośrednio na urządzeniu (np. pod systemem Android).
+
+\end{frame}
+
+\end{document}
