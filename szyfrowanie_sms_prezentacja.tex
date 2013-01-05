@@ -189,9 +189,14 @@ Stosowane są m. in. do:
 
 %==============================
 \begin{frame}
-  \frametitle{Wielostronnicowe SMS}
+  \frametitle{Łączone SMS (CSMS)}
 
-lorem ipsum i takie tam
+  Istnieje możliwość wysłania wiadomości dłuższych niż 160 znaków. Jest to
+  jednak tylko udogodnienie dla uzytkownika, ponieważ SMS który przekroczy
+  długość jest dzielony na części, a każda część zawiera nagłówek z informacją
+  o serii wiadomości. Nagłówek w zalezności od długości numeru referencyjnego
+  zawiera 6 lub 7 bajtów. W nagłówku oprócz numeru referencyjnego serii
+  wiadomości znajduje się również ilość oraz numer wiadomości w serii.
 
 \end{frame}
 
@@ -201,13 +206,47 @@ lorem ipsum i takie tam
   \frametitle{Zagrożenia}
 
 \begin{itemize}
-\item Sposoby podsłuchu 
-%np. zdjęcie urządzenia podsłuchowego
-\item Podszywanie się pod numery
+  \item Podsłuch (sniffing) 
+  \item Podszywanie się pod innego nadawcę (spoofing)
 \end{itemize}
 
 \end{frame}
 
+\begin{frame}[allowframebreaks]
+  \frametitle{Podsłuch}
+
+  Podsłuch wiadomości SMS można podzielić na dwie kategorie: podsłuch
+  komunikacji telefonu ze stacją bazową oraz podsłuch wiadomości przez wisuy w
+  nowoczesnych telefonach komórkowych.
+
+  Komunikacja GSM jest syfrowana algorytmem A5/1, który nie jest pozbawiony
+  wad. Opracowano już kilka rozwiązań do łamania kluczy szyfrujących tego
+  algorytmu.do podsłuchu tego rodzaju potrzebna jest też aparatura radiowa.
+
+  \framebreak
+
+  Wirusy na telefony komórkowe stały się popularne razem z systemem Android i
+  iOS. Nawet stosując największe środki ostrożności może nie udać się ochronić
+  przed niechcianym oprogramowaniem. Aplikacje podsłuchujące wiadomości
+  przesyłają je kożystając z dostępnej sieci internet wszystkie wiadomości w
+  telefonie. Można się przed nimi zabezpieczyć instalując oprogramowanie
+  antywirusowe lub stosując aplikacje do wysyłania szyfrowanych SMS-ów.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spoofing}
+  
+  Istnieją dostępne w internecie usługi pozwalające wysłać wiadomości SMS jako
+  dowolny nadawaca. Można podać numer telefonu jak również tekst opisujący
+  nadawcę. Głównym przeznaczeniem tej funkcjonalności jest komunikacja dostawcy
+  usług z klientam, przesyłki reklamowe oraz SMS-y informacyjne (np. Wiadomość
+  z ważnymi numerami telefonów po przekroczeniu granicy). Te możliwości SMS-ów
+  mogą również zostać wykorzystane w celu wyłudzenia informacji lub pieniędzy
+  od nieświadomego odbiorcy. Nie można automatycznie odfiltrować takich
+  wiadomości dlatego jedynm sposobem na spoofing jest rozwaga i zdrowy
+  rozsądek.
+
+\end{frame}
 %=============================================================
 \section{SMS od podszewki}
 %=============================================================
