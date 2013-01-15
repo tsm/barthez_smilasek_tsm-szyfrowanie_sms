@@ -6,6 +6,7 @@
 \usepackage{listings}
 \usepackage{lmodern}
 \usepackage{textcomp}
+\usepackage{subcaption}
 
 
 \usetheme[language=polish]%
@@ -313,34 +314,53 @@ lorem ipsum i takie tam
 
 \subsection{Przegląd algorytmów}
 
-
 \begin{frame}
-  \frametitle{Szyfr T9}
-
-lorem ipsum i takie tam
+  \frametitle{Protokół Diffiego-Hellmana}
+	
+Protokół uzgadniania kluczy Diffie-Hellman jest wykorzystywany w kryptografii
+do ustalenia jednego klucza dla obu stron transakcji bez przesyłania żadnych 
+poufnych informacji. Tak wygenerowany klucz jest później wykorzystywany przez
+ algorytm symetryczny do szyfrowania połączenia między odbiorcą, a nadawcą. 
+ Dzięki temu można zabezpieczyć transakcję przed podsłuchiwaniem przez osoby 
+ postronne. Algorytm Diffie-Hellman nie jest odporny na atak 
+ ,,man in the middle,, czyli ingerencję w komunikację między odbiorcą, 
+ a nadawcą poprzez podmianę kluczy publicznych na własne.
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Przykład}
-
-lorem ipsum i takie tam
-
-\end{frame}
-
-%=============================================================
-\begin{frame}
-  \frametitle{Szyfr cezara}
-
-lorem ipsum i takie tam
+  \frametitle{Algorytm OTR}
+	
+Protokół OTR (Off The Record Protocol) został zaprojektowany przez kryptografów Iana Goldberga i Nikitę Borisova
+specjalnie w celu kodowania wiadomości błyskawicznych (typu chat, SMS itp.).
+Algorytm OTR używa kombinacji algorytmu klucza symetrycznego, 
+protokołu Diffiego-Hellmana, funkcji skrótu SHA-1 i algorytmu AES. 
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Przykład}
+  \frametitle{Algorytm OTR}
 
-lorem ipsum i takie tam
+Zalety OTR:
+\begin{itemize}
+\item Szyfrowanie
+\item Uwierzytelnianie - poprzez zastosowanie protokołu socialist millionaire 
+osiągnięto ochronę na ataki typu ,,man in the middle,,
+\item Zaprzeczalność - wiadomości w rozmowie nie posiadają podpisów cyfrowych,
+zatem po zakończeniu rozmowy niemożliwym jest stwierdzenie, że konkretna 
+wiadomośc pochodzi od danej osoby
+\item Poufność - wiadomości są szyfrowane jedynie tymczasowymi kluczami AES, negocjowanymi przy pomocy protokołu Diffiego-Hellmana. Ewentualne przechwycenie jakiegokolwiek długotrwałego klucza, nie skutkuje przechwyceniem żadnej z poprzednich rozmów.
+\end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{Algorytm OTR}
+  
+Ograniczenia:
+\begin{itemize}
+\item brak obsługi czatu wieloosobowego
+\item szyfrowanie tylko wiadomości (w planach jest też możliwośc szyfrowania plików)
+\end{itemize}
 \end{frame}
 
 %=============================================================
@@ -354,6 +374,104 @@ lorem ipsum i takie tam
 \item Szyf cezara, wyjątkowo prosty i nie narzuca dodatkowych danych
 \end{itemize}
 
+\end{frame}
+
+%=============================================================
+\section{Przegląd aplikacji szyfrujących SMSy}
+%=============================================================
+
+\begin{frame}
+  \frametitle{uText Encrypted SMS}
+	
+	Platforma: Android\\
+	uText Encrypted SMS pozwala na zaszyfrowanie wiadomości SMS 
+wykorzystując istniejącego klienta wiadomości. Program używa protokołu 
+	Diffiego-Hellmana w celu ustalenia tajnego klucza, który zostanie użyty 
+	do zaszyfrowania wiadomości. Samo szyfrowanie wykorzystuje algortym AES (256bit).
+	Do wymiany wiadomości wymagane jest:
+	\begin{enumerate}
+	\item zainstalowanie aplikacji u nadawcy i odbiorcy 
+	\item zaakceptowanie klucza do wysyłania i odbierania wiadomości
+	\end{enumerate}
+	
+\end{frame}
+\begin{frame}
+  \frametitle{uText Encrypted SMS}
+    \begin{center}
+        \begin{figure}
+          \centering
+            \begin{subfigure}[b]{0.4\textwidth}
+               \centering
+               \includegraphics[width=\textwidth]{uText1}
+              \caption{Wysyłanie klucza}
+            \end{subfigure}
+            \quad
+             \begin{subfigure}[b]{0.4\textwidth}
+              \centering
+              \includegraphics[width=\textwidth]{uText2}
+              \caption{Zaszyfrowane SMSy}
+            \end{subfigure}       
+        \end{figure}
+      \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{TextSecure}
+	
+	Platforma: Android\\
+	Aplikacja TextSecure to kolejna aplikacja pozwalająca na szyfrowanie 
+	wychodzących wiadomości SMS. Jednakże proces szyfrowania odbywa się tutaj 
+	za pomocą protokołu OTR. Aplikacja ma dodatkowo możliwość szyfrowania 
+	wiadomości przechowywanych w pamięci telefonu poprzez użycie globalnego klucza.
+		
+\end{frame}
+\begin{frame}
+  \frametitle{TextSecure}
+    \begin{center}
+        \begin{figure}
+          \centering
+            \begin{subfigure}[b]{0.4\textwidth}
+               \centering
+               \includegraphics[width=\textwidth]{textsecure1}
+              \caption{Wymiana kluczy}
+            \end{subfigure}
+            \quad
+             \begin{subfigure}[b]{0.4\textwidth}
+              \centering
+              \includegraphics[width=\textwidth]{textsecure2}
+              \caption{Podawanie klucza}
+            \end{subfigure}       
+        \end{figure}
+      \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Secure Texting}
+	
+	Platforma: iOS\\
+	Program ten jest bardzo prosty lecz wymaga znajomości hasła zarówno 
+	od nadawcy jak i odbiorcy. SMS jest szyfrowany przez nadawcę przy użyciu 
+	odpowiedniego hasła i przesyłany już w formie zaszyfrowanej. 
+	Odbiorca jest zmuszony użyć tego samego hasła, aby odkodować wiadomość.
+\end{frame}
+\begin{frame}
+  \frametitle{Secure Texting}
+    \begin{center}
+        \begin{figure}
+          \centering
+            \begin{subfigure}[b]{0.4\textwidth}
+               \centering
+               \includegraphics[width=\textwidth]{secure_texting_1}
+              \caption{Wpisywanie SMSa}
+            \end{subfigure}
+            \quad
+             \begin{subfigure}[b]{0.4\textwidth}
+              \centering
+              \includegraphics[width=\textwidth]{secure_texting_2}
+              \caption{Podawanie klucza}
+            \end{subfigure}       
+        \end{figure}
+      \end{center}
 \end{frame}
 
 %=============================================================
