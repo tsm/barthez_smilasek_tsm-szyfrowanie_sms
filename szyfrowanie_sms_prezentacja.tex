@@ -7,6 +7,7 @@
 \usepackage{lmodern}
 \usepackage{textcomp}
 \usepackage{subcaption}
+\usepackage{etex}
 
 
 \usetheme[language=polish]%
@@ -51,9 +52,12 @@ Krzysztof Śmiłek\\}
 
 \begin{frame}
   \frametitle{Wstęp}
- Krótkie wiadomości tekstowe potocznie zwane SMS (Short Message Service) na dobre zadomowiły się w większej części świata i stanowią dzisiaj jeden z popularniejszych kanałów komunikacji. 
+ Krótkie wiadomości tekstowe potocznie zwane SMS (Short Message Service) na dobre zadomowiły się w większej części świata i stanowią dzisiaj jeden z popularniejszych kanałów komunikacji. \newline
+\newline
+W niniejszej prezentacji postaramy się przybliżyć technologię i słabości SMS oraz przeprowadzić przegląd wykorzystywanych metod szyfrowania wiadomości.  
 % można tu umieścić komiks z XKCD lub dane z niego w porównaniu do całego Internetu 
 % bathez: który komiks?
+% miałem na myślie ten obrazek (dwie ramki z lewej), ale chyba jednak się nie nadaje: http://xkcd.com/802_large/
 \end{frame}
 
 \subsection{Zastosowania}
@@ -61,14 +65,14 @@ Krzysztof Śmiłek\\}
 \begin{frame}
   \frametitle{Zastosowania}
 
-Stosowane są m. in. do:
+SMSy stosowane są między innymi do:
 \begin{itemize}
-\item Wysyłania krótkich wiadomości i ``"czatów''
-\item Aktywowania usług u operatorów komórkowych
-\item Powiadomień od operatorów, banków i innych instytucji
-\item Wysyłania bezpiecznych tokenów - haseł
-\item Reklam i konkursów SMS
-\item Sterowania urządzeniami 
+\item wysyłania krótkich wiadomości i ,,czatów'',
+\item aktywowania usług u operatorów komórkowych,
+\item powiadomień od operatorów, banków i innych instytucji,
+\item wysyłania bezpiecznych tokenów - haseł,
+\item reklam i konkursów SMS,
+\item sterowania urządzeniami. 
 %kamerki szpiegowskie hehe
 \end{itemize}
    
@@ -86,11 +90,11 @@ Stosowane są m. in. do:
   \begin{itemize}
     \item \textbf{1982 r.} - powstanie instytutu Groupe Spécial Mobile, 2 lata
       później - projekt specyfikacji
-    \item \textbf{1987 r.} - derektywa unijna o rezerwacji czestotliwości przez
+    \item \textbf{1987 r.} - dyrektywa unijna o rezerwacji częstotliwości przez
       państwa członkowskie, rok później - specyfikacja GSM 900 Phase 1
     \item \textbf{1989 r.} - powstanie \emph{Europejskiego Instytutu Norm
       Telekomunikacyjnych (ETSI)}, przejecie prac nad standardem, rok później -
-      domknięcie standardu i rozpoczecie budowy infrastruktury
+      domknięcie standardu i rozpoczęcie budowy infrastruktury
   \end{itemize}
 
   \framebreak
@@ -100,7 +104,7 @@ Stosowane są m. in. do:
     \item \textbf{1990 r.} - opracowanie specyfikacji GSM 1800 (DCS).
       Uwzględnienie przesyłania SMS-ów i danych.
     \item \textbf{1991 r.} - pierwsze połączenie telefoniczne w standardzie GSM
-    \item \textbf{1993 r.} - uruchomienie DCS w Wielkiej Brytani oraz pierwsze
+    \item \textbf{1993 r.} - uruchomienie DCS w Wielkiej Brytanii oraz pierwsze
       uruchomienie GSM poza Europą
     \item \textbf{1995 r.} - zakończenie prac nad standardem GSM Phase 2
   \end{itemize}
@@ -116,9 +120,9 @@ Stosowane są m. in. do:
     \item \textbf{1982 r.} - grupa GSM proponuje system wymiany wiadomości
       tekstowych miedzy stacjami nadawczymi lub za pomocą protokołu Message
       Handling System (wtedy bardzo popularnego)
-    \item \textbf{1984 r.} - opracowanie koncepcji SMS-a jako widomości o
-      długości 160 znaków wykorzystujacy do przesyłania kanał informacyjny
-      (nieużywany przez większość czasu komunikacji urzadzeń) - przez Deutsche
+    \item \textbf{1984 r.} - opracowanie koncepcji SMS-a jako wiadomości o
+      długości 160 znaków wykorzystujący do przesyłania kanał informacyjny
+      (nieużywany przez większość czasu komunikacji urządzeń) - przez Deutsche
       Telekom oraz France Télécom.
     \item \textbf{grudzień 1992 r.} - pierwszy SMS o treści ``Merry
       Christmas''
@@ -129,11 +133,11 @@ Stosowane są m. in. do:
   \frametitle{Centra SMS}
 
   W pierwszych implementacjach SMS wiadomości były dostarczana kanałem
-  informacyjnym bezpośrednio do odbiorcy. W póxniejszych implementacjach stacji
+  informacyjnym bezpośrednio do odbiorcy. W późniejszych implementacjach stacji
   GSM dodano obsługę \emph{centr SMS (SMSC)}. Każdy wysłany SMS trafia do
   centrum które wysyła widomość do odbiorcy gdy ten znajduje się zasięgu sieci,
-  jesli nie wiadomość oczekuje do momentu zalogowania się odbiorcy. Jesli minie
-  czas ważnosci wiadomości SMS nie jest dostarczany.
+  jeśli nie wiadomość oczekuje do momentu zalogowania się odbiorcy. Jeśli minie
+  czas ważności wiadomości SMS nie jest dostarczany.
 \end{frame}
 
 \begin{frame}
@@ -154,20 +158,20 @@ Stosowane są m. in. do:
 \begin{frame}[allowframebreaks]
   \frametitle{Liczba znaków}
 
-  Poczatkowo SMS pozwalał na wysłanie 128 znaków (128 oktetów - 1024 bity).
-  Mastepnie udało się rozszerzyć protokół do 140 oktetów (1120 bitów).
+  Początkowo SMS pozwalał na wysłanie 128 znaków (128 oktetów - 1024 bity).
+  Następnie udało się rozszerzyć protokół do 140 oktetów (1120 bitów).
   Zmieniając kodowanie znaków na tzw. alfabet GSM, który używa 7 bitów na znak
   udaje się wysłać 160 znaków w jednej wiadomości.
 
   \textbf{Liczba 160 znaków} ma podłoże w badaniach przeprowadzonych na
-  widomościach przesyłanych pocztówkami i przez dalekopisy. Analiza długości
+  wiadomościach przesyłanych pocztówkami i przez dalekopisy. Analiza długości
   pozwoliła stwierdzić, że do tego typu komunikacji potrzeba ok. 150 znaków.
   Liczba natomiast 160 wynika ze specyfiki technologii.
 
   \framebreak
 
   \textbf{Alfabet GSM} - okrojona tablica ASCII do 127 pierwszych znaków, gdzie
-  większość znaków sterujących została zastąpiona znakami z drugiej częsci
+  większość znaków sterujących została zastąpiona znakami z drugiej części
   tablicy ASCII.
 
 \end{frame}
@@ -175,16 +179,16 @@ Stosowane są m. in. do:
 \begin{frame}
   \frametitle{Problem znaków spoza alfabetu GSM}
 
-  Współczesne urządzenia domyslnie wysyłają SMS w alfabecie GSM, jesli jednak
+  Współczesne urządzenia domyślnie wysyłają SMS w alfabecie GSM, jeśli jednak
   użyjemy znaku który znajduje się poza tym alfabetem (np. znaku z ogonkiem)
-  widomośc zostanie wyslana w kodowaniu LATIN-1 (dla polskiego alfabetu), które
-  jest kodowaniem 8-bitowym, co zmniejsza pojemnośc SMS-a do 140 znaków.
+  wiadomość zostanie wysłana w kodowaniu LATIN-1 (dla polskiego alfabetu), które
+  jest kodowaniem 8-bitowym, co zmniejsza pojemność SMS-a do 140 znaków.
 
-  Jeśli chcemu użyć znaków z języków takich jak japoński, chiński, arabski czy
-  cyrylicy nalezy użyć kodowania 16-bitowego UCS-2 co jednak redukuje pojemność
+  Jeśli chcemy użyć znaków z języków takich jak japoński, chiński, arabski czy
+  cyrylicy należy użyć kodowania 16-bitowego UCS-2 co jednak redukuje pojemność
   SMS do 60 znaków.
 
-  Niektóre nowoczesne telefony domyślnie przęłączają się do kodowania UCS-2
+  Niektóre nowoczesne telefony domyślnie przełączają się do kodowania UCS-2
   jeśli użyjemy znaku spoza alfabetu GSM.
 \end{frame}
 
@@ -193,9 +197,9 @@ Stosowane są m. in. do:
   \frametitle{Łączone SMS (CSMS)}
 
   Istnieje możliwość wysłania wiadomości dłuższych niż 160 znaków. Jest to
-  jednak tylko udogodnienie dla uzytkownika, ponieważ SMS który przekroczy
+  jednak tylko udogodnienie dla użytkownika, ponieważ SMS który przekroczy
   długość jest dzielony na części, a każda część zawiera nagłówek z informacją
-  o serii wiadomości. Nagłówek w zalezności od długości numeru referencyjnego
+  o serii wiadomości. Nagłówek w zależności od długości numeru referencyjnego
   zawiera 6 lub 7 bajtów. W nagłówku oprócz numeru referencyjnego serii
   wiadomości znajduje się również ilość oraz numer wiadomości w serii.
 
@@ -238,9 +242,9 @@ Stosowane są m. in. do:
   \frametitle{Spoofing}
   
   Istnieją dostępne w internecie usługi pozwalające wysłać wiadomości SMS jako
-  dowolny nadawaca. Można podać numer telefonu jak również tekst opisujący
+  dowolny nadawca. Można podać numer telefonu jak również tekst opisujący
   nadawcę. Głównym przeznaczeniem tej funkcjonalności jest komunikacja dostawcy
-  usług z klientam, przesyłki reklamowe oraz SMS-y informacyjne (np. Wiadomość
+  usług z klientami, przesyłki reklamowe oraz SMS-y informacyjne (np. Wiadomość
   z ważnymi numerami telefonów po przekroczeniu granicy). Te możliwości SMS-ów
   mogą również zostać wykorzystane w celu wyłudzenia informacji lub pieniędzy
   od nieświadomego odbiorcy. Nie można automatycznie odfiltrować takich
@@ -248,71 +252,34 @@ Stosowane są m. in. do:
   rozsądek.
 
 \end{frame}
-%=============================================================
-\section{SMS od podszewki}
-%=============================================================
-
-\subsection{Modemy}
-\begin{frame}
-  \frametitle{Telefony i modemy 3G}
-
-lorem ipsum i takie tam
-
-\end{frame}
-%=============================================================
-
-\begin{frame}
-  \frametitle{Bluetooth DUN}
-
-lorem ipsum i takie tam
-
-\end{frame}
-%=============================================================
-\subsection{Komendy AT}
-\begin{frame}
-  \frametitle{Komendy AT}
-
-lorem ipsum i takie tam
-
-\end{frame}
-%=============================================================
-
-\begin{frame}
-  \frametitle{Zestawy komend}
-
-lorem ipsum i takie tam
-
-\end{frame}
-%=============================================================
-\begin{frame}
-  \frametitle{Komendy służące do obsługi SMS}
-
-lorem ipsum i takie tam
-
-\end{frame}
-%=============================================================
-\begin{frame}
-  \frametitle{Kodowanie znaków}
-
-lorem ipsum i takie tam
-
-\end{frame}
 
 %=============================================================
 \section{Szyfrowanie}
+
+%=============================================================
+\subsection{Słownik T9}
+\begin{frame}
+  \frametitle{Słownik T9}
+  Jest to podwórkowa ,,zabawa w szyfrowanie'' polegająca na tym, że całą wiadomość zapisujemy cyframi tak, jakbyśmy korzystali ze słownika T9 (poszczególnym cyfrom na klawiaturze telefonu są przypisane litery). Aby odszyfrować wiadomość odbiorca potrzebuje prześledzić literki na klawiaturze i domyśleć się wyrazów lub po prostu zanotować sobie ją na kartce obok i zacząć pisać nową wiadomość wpisując cyfry z pierwotnej wiadomości a słownik T9 będzie próbował odgadnąć wyrazy (można też skorzystać z drugiego telefonu). \newline
+\newline
+Dla przykładu wiadomość ,,Tajna wiadmość'' zakodowana zostaje do  postaci "825610942366672".
+
+\end{frame}
+
 %=============================================================
 
-\subsection{Kryteria wyboru}
-\begin{frame}
-  \frametitle{Kryteria wyboru}
+\subsection{Algorytm A5/1}
 
+\begin{frame}
+  \frametitle{Algorytm A5/1}
+ Komunikacja GSM 
  wymagania, szyfrowanie symetryczne/asymetryczne i dlaczego (przede wszystkim kompresja i ograniczona liczba znaków )
 
 \end{frame}
 
 %=============================================================
 
-\subsection{Przegląd algorytmów}
+\subsection{Protokół Diffiego-Hellmana}
 
 \begin{frame}
   \frametitle{Protokół Diffiego-Hellmana}
@@ -327,6 +294,10 @@ poufnych informacji. Tak wygenerowany klucz jest później wykorzystywany przez
  a nadawcą poprzez podmianę kluczy publicznych na własne.
 
 \end{frame}
+
+%=============================================================
+
+\subsection{Algorytm OTR}
 
 \begin{frame}
   \frametitle{Algorytm OTR}
@@ -348,7 +319,7 @@ Zalety OTR:
 osiągnięto ochronę na ataki typu ,,man in the middle,,
 \item Zaprzeczalność - wiadomości w rozmowie nie posiadają podpisów cyfrowych,
 zatem po zakończeniu rozmowy niemożliwym jest stwierdzenie, że konkretna 
-wiadomośc pochodzi od danej osoby
+wiadomość pochodzi od danej osoby
 \item Poufność - wiadomości są szyfrowane jedynie tymczasowymi kluczami AES, negocjowanymi przy pomocy protokołu Diffiego-Hellmana. Ewentualne przechwycenie jakiegokolwiek długotrwałego klucza, nie skutkuje przechwyceniem żadnej z poprzednich rozmów.
 \end{itemize}
 \end{frame}
@@ -359,21 +330,8 @@ wiadomośc pochodzi od danej osoby
 Ograniczenia:
 \begin{itemize}
 \item brak obsługi czatu wieloosobowego
-\item szyfrowanie tylko wiadomości (w planach jest też możliwośc szyfrowania plików)
+\item szyfrowanie tylko wiadomości (w planach jest też możliwość szyfrowania plików)
 \end{itemize}
-\end{frame}
-
-%=============================================================
-\section{Porównianie}
-%=============================================================
-
-\begin{frame}
-  \frametitle{Porównanie}
-    \begin{itemize}
-\item Metoda z użyciem T9, nie wymaga oprogramowania, łatwa w złamaniu
-\item Szyf cezara, wyjątkowo prosty i nie narzuca dodatkowych danych
-\end{itemize}
-
 \end{frame}
 
 %=============================================================
@@ -479,7 +437,7 @@ wykorzystując istniejącego klienta wiadomości. Program używa protokołu
 
 \begin{frame}
   \frametitle{Podsumowanie}
-Spośród omawianych przez nas metod każda ma zalety, ale też pewne słabościi.\\[\baselineskip] Przedstawione technologie i sposoby pozwalają łatwo wprowadzić szyfry i zaimplementować je np. w programie komputerowym korzystającym z modemu 3G lub działającym bezpośrednio na urządzeniu (np. pod systemem Android).
+Spośród omawianych przez nas metod każda ma zalety, ale też pewne słabości.\\[\baselineskip] Przedstawione technologie i sposoby pozwalają łatwo wprowadzić szyfry i zaimplementować je np. w programie komputerowym korzystającym z modemu 3G lub działającym bezpośrednio na urządzeniu (np. pod systemem Android).
 
 \end{frame}
 
