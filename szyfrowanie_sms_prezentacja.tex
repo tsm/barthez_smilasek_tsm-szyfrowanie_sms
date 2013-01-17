@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{subcaption}
 \usepackage{etex}
+\usepackage{mathtools}
 
 
 \usetheme[language=polish]%
@@ -348,6 +349,62 @@ Wady:
 \item Nowsze telefony nie posiadają już tego typu klawiatury i słownika
 \item Zupełnie nieprzydatny do profesjonalnego zastosowania
 \end{itemize}
+
+\end{frame}
+
+%=============================================================
+
+\subsection{RSA}
+
+\begin{frame}
+  \frametitle{RSA}
+	
+RSA to jeden z pierwszych i obecnie najpopularniejszych asymetrycznych algorytmów kryptograficznych z kluczem publicznym.
+Był pierwszym algorytmem, który mógł być stosowany zarówno do szyfrowania jak i podpisów cyfrowych. Jego bezpieczeństwo opiera się na trudności faktoryzacji dużych liczb zlożonych.
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{RSA - generowanie kluczy}
+	
+	Algorytm generowania kluczy:
+	\begin{enumerate}
+	\item Wybór losowych możliwie dużych liczb pierwszych\\ p i q
+	\item Obliczenie wartości  	\(n=pq\)
+	\item Obliczenie wartości funckji eulera dla n  	\begin{math}\varphi(n)=(p-1)(q-1) 	\end{math}
+	\item Wybór liczby względnie pierwszej e \begin{math}(1<e<\varphi(n))\end{math}
+	\item Znalezienie liczby \begin{math}d = e^{-1} \mod \varphi(n)\end{math}
+	\end{enumerate}
+	Za klucz publiczny uznaje się parę liczb (n,e),\\ a za klucz prywatny parę liczb(n,d)
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{RSA - szyfrowanie i deszyfrowanie}
+	
+Zanim zaszyfrujemy wiadomość, dzielimy ją na bloki \begin{math}m_{i}\end{math}\\
+o wartości liczbowej nie większej niż n, a następnie\\
+każdy z bloków szyfrujemy według wzoru:
+
+    \begin{math}c_{i} = m_{i}^e \mod n \end{math}\\
+    \vspace{10 mm}
+    
+Zaszyfrowana wiadomość będzie się składać z kolejnych\\
+bloków \begin{math}c_{i}\end{math}. Tak stworzony szyfrogram przekształcamy na tekst jawny, odszyfrowując kolejne blok \begin{math}c_{i}\end{math} według wzoru:
+
+    \begin{math}m_{i} = c_{i}^d \mod n\end{math}
+
+\end{frame}
+%=============================================================
+
+\subsection{ElGamal}
+
+\begin{frame}
+  \frametitle{ElGamal}
+	
+Po RSA drugi najważniejszy algorytm kryptografii asymetrycznej. Szyfr ten oparty jest na trudności problemu logarytmu dyskretnego w ciele liczb calkowitych modulo duża liczba pierwsza. Algorytm ten podobnie jak RSA umożliwia szyfrowanie oraz obsługe podpisow cyfrowych. Istnieje ogrom modyfikacji tego algorytmu co powoduje, że zidentyfikowanie wlaściwego algorytmu staje się trudniejsze.
 
 \end{frame}
 
