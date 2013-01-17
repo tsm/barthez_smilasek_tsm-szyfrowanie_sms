@@ -257,23 +257,95 @@ SMSy stosowane są między innymi do:
 \section{Szyfrowanie}
 
 %=============================================================
-\subsection{Słownik T9}
+
+\subsection{Szyfrowanie transmisji GSM}
+%source: http://pl.wikipedia.org/wiki/A5_(kryptografia),  www.impan.pl/Kryptologia/str53h.pdf
 \begin{frame}
-  \frametitle{Słownik T9}
-  Jest to podwórkowa ,,zabawa w szyfrowanie'' polegająca na tym, że całą wiadomość zapisujemy cyframi tak, jakbyśmy korzystali ze słownika T9 (poszczególnym cyfrom na klawiaturze telefonu są przypisane litery). Aby odszyfrować wiadomość odbiorca potrzebuje prześledzić literki na klawiaturze i domyśleć się wyrazów lub po prostu zanotować sobie ją na kartce obok i zacząć pisać nową wiadomość wpisując cyfry z pierwotnej wiadomości a słownik T9 będzie próbował odgadnąć wyrazy (można też skorzystać z drugiego telefonu). \newline
+  \frametitle{Szyfrowanie transmisji GSM}
+Przy nawiązywaniu komunikacji następują:
+\begin{itemize}
+\item uwierzytelnienie algorytmem A3,
+\item wygenerowanie klucza sesji Kc algorytmem A8 z tajnego klucza Ki znajdującego się na karcie SIM i u operatora oraz wygenerowanej losowo liczby,
+\item komunikacja przy wykorzystaniu algorytmu A5.
+\end{itemize}
+Algorytmy A3 oraz A8 wybiera operator, może to być np. COMP128.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Schemat szyfrowania transmisji GSM}
+ \begin{center}
+    \begin{figure}
+      \includegraphics[width=1.0\textwidth]{gsm_schemat_szyfrowania}
+    \end{figure}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A5}
+ Przy szyfrowaniu transmisji GSM wykorzystuje się algorytmy z rodziny A5, są to:
+\begin{itemize}
+\item A5/0 — bez szyfrowania, (używany we Francji do lat 90.),
+\item A5/1 — szeroko stosowany, pochodzący z roku 1987 szyfr strumieniowy,
+\item A5/2 — celowo osłabiony szyfr strumieniowy w celu spełnienia wymagań ograniczeń w USA,
+\item A5/3 — stworzony na potrzeby UMTS oparty o szyfr blokowy KASUMI.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{A5/1}
+Najczęściej stosowanym algorytmem szyfrowania transmisji GSM drugiej generacji jest A5/1. Jest szyfrem strumieniowym (szyfrowany jest osobno każdy bit wiadomości),  symetrycznym. Początkowo jego specyfikacja była trzymana w tajemnicy jednak potem został rozpracowany metodą odwrotnej inżynierii (ang. reverse engineering). \newline
 \newline
-Dla przykładu wiadomość ,,Tajna wiadmość'' zakodowana zostaje do  postaci "825610942366672".
+Grupie niemieckich naukowców udało się złamać szyfr generując odpowiedzi dla wszystkich wejść systemu (tablica ma parę TB wielkości).
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Szyfrogram w treści wiadomości}
+Nic nie stoi na przeszkodzie, aby samodzielnie szyfrować wiadomość w treści SMS. \newline 
+\newline
+Metoda szyfrowania powinna uwzględniać:
+\begin{itemize}
+\item dostępną niewielką liczbę znaków do wykorzystania i nie powodować zbytnich dodatkowych narzutów,
+\item możliwości urządzeń i systemów mobilnych,
+\item komfort użytkowania.
+\end{itemize}
 
 \end{frame}
 
 %=============================================================
-
-\subsection{Algorytm A5/1}
+\subsection{Słownik T9}
+\begin{frame}
+  \frametitle{Słownik T9}
+  Jest to podwórkowa ,,zabawa w szyfrowanie'' polegająca na tym, że całą wiadomość zapisujemy cyframi tak, jakbyśmy korzystali ze słownika T9 (poszczególnym cyfrom na klawiaturze telefonu są przypisane litery). \newline \newline Aby odszyfrować wiadomość odbiorca potrzebuje prześledzić literki na klawiaturze i domyślić się wyrazów lub po prostu zanotować sobie szyfrogram na kartce obok i zacząć pisać nową wiadomość używając przycisków w kombinacji z pierwotnej wiadomości a słownik T9 będzie próbował odgadnąć wyrazy (można też skorzystać z drugiego telefonu).
+\end{frame}
 
 \begin{frame}
-  \frametitle{Algorytm A5/1}
- Komunikacja GSM 
- wymagania, szyfrowanie symetryczne/asymetryczne i dlaczego (przede wszystkim kompresja i ograniczona liczba znaków )
+  \frametitle{Słownik T9 - przykład}
+Aby zakodować tekst jawny ,,Tajna wiadomość'' zaczynamy od '8', bo 'T' znajduje się pod tym klawiszem, następnie 'a' spod '2', 'j' spod '5'  i tak dalej.\newline \newline Ostatecznie otrzymujemy szyfrogram "825610942366672". 
+ \begin{center}
+    \begin{figure}
+      \includegraphics[width=0.5\textwidth]{phone_keys}
+%source: http://en.wikipedia.org/wiki/Telephone_keypad
+    \end{figure}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Słownik T9}
+Zalety:
+\begin{itemize}
+\item W miarę szybkie, ręczne szyfrowanie i deszyfrowanie bez instalowania specjalnego oprogramowania
+\item Nie ma narzutu dodatkowych danych
+\item Sprawdza się zwłaszcza, gdy ktoś niepowołany przegląda skrzynkę wiadomości na telefonie
+\end{itemize}
+
+Wady:
+\begin{itemize}
+\item Łatwe do złamania, zwłaszcza gdy intruz wie o co chodzi (ale można utrudnić wykonując operację np. odejmowania 1 od każdej cyfry)
+\item Nowsze telefony nie posiadają już tego typu klawiatury
+\item Zupełnie nieprzydatny do profesjonalnego zastosowania
+\end{itemize}
 
 \end{frame}
 
@@ -338,6 +410,8 @@ Ograniczenia:
 \section{Przegląd aplikacji szyfrujących SMSy}
 %=============================================================
 
+\subsection{uText Encrypted SMS}
+
 \begin{frame}
   \frametitle{uText Encrypted SMS}
 	
@@ -373,6 +447,10 @@ wykorzystując istniejącego klienta wiadomości. Program używa protokołu
       \end{center}
 \end{frame}
 
+%=============================================================
+
+\subsection{TextSecure}
+
 \begin{frame}
   \frametitle{TextSecure}
 	
@@ -402,6 +480,10 @@ wykorzystując istniejącego klienta wiadomości. Program używa protokołu
         \end{figure}
       \end{center}
 \end{frame}
+
+%=============================================================
+
+\subsection{Secure Texting}
 
 \begin{frame}
   \frametitle{Secure Texting}
@@ -437,7 +519,7 @@ wykorzystując istniejącego klienta wiadomości. Program używa protokołu
 
 \begin{frame}
   \frametitle{Podsumowanie}
-Spośród omawianych przez nas metod każda ma zalety, ale też pewne słabości.\\[\baselineskip] Przedstawione technologie i sposoby pozwalają łatwo wprowadzić szyfry i zaimplementować je np. w programie komputerowym korzystającym z modemu 3G lub działającym bezpośrednio na urządzeniu (np. pod systemem Android).
+Spośród omawianych przez nas algorytmów i metod każde ma zalety, ale też pewne słabości.\\[\baselineskip] Pomimo tego, że transmisja GSM i jeszcze lepiej zabezpieczona jej kolejna generacja UMTS tak czy inaczej jest szyfrowana czasem warto na własną rękę zabezpieczyć wymieniane wiadomości stosując szyfry. W tym celu można zainstalować jedną z szeregu różnych aplikacji szyfrujących wiadomości.
 
 \end{frame}
 
